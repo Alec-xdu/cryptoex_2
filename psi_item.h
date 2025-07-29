@@ -4,40 +4,65 @@
 #include <vector>
 #include <string>
 #include <cstdint>
+#include <array>
 #include <openssl/evp.h>
 #include <openssl/hmac.h>
 #include <openssl/sha.h>
 
-// PSI协议中的数据项
+// PSI协议中的数据项 - 兼容APSI Item格式
 class PSIItem {
+public:
+    // APSI兼容的固定大小哈希值（128位）
+    static constexpr size_t ITEM_HASH_SIZE = 16; // 128位
+    using ItemHash = std::array<uint8_t, ITEM_HASH_SIZE>;
+    
 private:
     std::vector<uint8_t> data_;
-    std::vector<uint8_t> hash_;
+    ItemHash item_hash_;
+    bool hash_computed_;
     
 public:
     PSIItem();
     PSIItem(const std::string& str_data);
     PSIItem(const std::vector<uint8_t>& raw_data);
+    PSIItem(const char* data, size_t length);
     PSIItem(const PSIItem& other);
     PSIItem& operator=(const PSIItem& other);
     
     // 获取原始数据
     const std::vector<uint8_t>& getData() const { return data_; }
     
-    // 获取哈希值
-    const std::vector<uint8_t>& getHash() const { return hash_; }
+    // 获取APSI兼容的128位哈希值
+    const ItemHash& getItemHash() const;
+    
+    // 获取哈希值作为vector（向后兼容）
+    std::vector<uint8_t> getHash() const;
     
     // 设置数据并计算哈希
     void setData(const std::string& str_data);
     void setData(const std::vector<uint8_t>& raw_data);
+    void setData(const char* data, size_t length);
     
-    // 比较操作
+    // 获取数据大小
+    size_t size() const { return data_.size(); }
+    
+    // 检查是否为空
+    bool empty() const { return data_.empty(); }
+    
+    // 清空数据
+    void clear();
+    
+    // 比较操作（基于哈希值）
     bool operator==(const PSIItem& other) const;
     bool operator!=(const PSIItem& other) const;
     bool operator<(const PSIItem& other) const;
     
     // 转换为字符串表示
     std::string toString() const;
+    std::string toHexString() const;
+    
+    // 静态方法：从十六进制字符串创建Item
+    static PSIItem fromHexString(const std::string& hex_str);
     
 private:
     void computeHash();

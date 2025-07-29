@@ -1,0 +1,2 @@
+/usr/bin/ar qc libsecret_share_distributor.a CMakeFiles/secret_share_distributor.dir/src/secret_share_distributor.cpp.o CMakeFiles/secret_share_distributor.dir/src/beaver_triple.cpp.o CMakeFiles/secret_share_distributor.dir/src/rng_utils.cpp.o
+/usr/bin/ranlib libsecret_share_distributor.a

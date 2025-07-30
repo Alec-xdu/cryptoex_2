@@ -1,0 +1,1 @@
+/usr/bin/c++ -Xlinker --dependency-file=CMakeFiles/psi_example.dir/link.d CMakeFiles/psi_example.dir/examples/main.cpp.o -o psi_example  libsecret_sharing_psi.a /usr/lib/x86_64-linux-gnu/libssl.so /usr/lib/x86_64-linux-gnu/libcrypto.so

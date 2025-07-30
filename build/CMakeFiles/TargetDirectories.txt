@@ -1,0 +1,5 @@
+/workspace/build/CMakeFiles/secret_sharing_psi.dir
+/workspace/build/CMakeFiles/psi_example.dir
+/workspace/build/CMakeFiles/psi_test.dir
+/workspace/build/CMakeFiles/edit_cache.dir
+/workspace/build/CMakeFiles/rebuild_cache.dir

@@ -1,0 +1,2 @@
+/usr/bin/ar qc libsecret_sharing_psi.a CMakeFiles/secret_sharing_psi.dir/src/secret_sharing.cpp.o CMakeFiles/secret_sharing_psi.dir/src/item.cpp.o CMakeFiles/secret_sharing_psi.dir/src/hash_table.cpp.o CMakeFiles/secret_sharing_psi.dir/src/cuckoo_hash.cpp.o CMakeFiles/secret_sharing_psi.dir/src/psi_protocol.cpp.o CMakeFiles/secret_sharing_psi.dir/src/oprf.cpp.o
+/usr/bin/ranlib libsecret_sharing_psi.a
